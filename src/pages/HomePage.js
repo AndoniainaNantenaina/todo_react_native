@@ -10,7 +10,7 @@ export default function HomePage() {
     return (
         <>
         <AddTodo list={list} setList={setList}/>
-        <ListTodo listTodo={list}/>
+        <ListTodo setList={setList} listTodo={list}/>
         </>
     )
 }

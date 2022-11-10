@@ -5,6 +5,7 @@ function AddTodo(props) {
 
     const [todo, setTodo] = useState(
         {
+            id : props.list.length,
             title : "",
             priority : "Low"
         }
@@ -19,7 +20,7 @@ function AddTodo(props) {
         <div style={{padding : 20}}>
         <TextInput 
         onChange={text => {
-            setTodo({title : text.target.value, priority : todo.priority})
+            setTodo({id : todo.id, title : text.target.value, priority : todo.priority})
         }}
         value={todo.title}
         mode='outlined' 
@@ -32,7 +33,7 @@ function AddTodo(props) {
         onPress={() => {
             setIsLowChecked(true);
             setIsHighChecked(false);
-            setTodo({title : todo.title, priority : 'Low'})
+            setTodo({id : todo.id, title : todo.title, priority : 'Low'})
         }}/>
 
         <RadioButton
@@ -42,7 +43,7 @@ function AddTodo(props) {
         onPress={() => {
             setIsHighChecked(true);
             setIsLowChecked(false)
-            setTodo({title : todo.title, priority : 'High'})
+            setTodo({id : todo.id, title : todo.title, priority : 'High'})
         }}/>
 
         <Divider/>
@@ -51,7 +52,7 @@ function AddTodo(props) {
         onPress={() => {
             if (todo.title != "") {
                 props.setList([...props.list, todo]);
-                setTodo({title : "", priority : 'Low'});
+                setTodo({id : todo.id + 1, title : "", priority : 'Low'});
                 setIsLowChecked(true);
                 setIsHighChecked(false);
             }

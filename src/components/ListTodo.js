@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FlatList, ScrollView } from 'react-native';
 import { Card, Avatar, IconButton } from 'react-native-paper';
 
 function ListTodo(props) {
-  
+
   if (props.listTodo.length != 0) {
 
     console.log(props.listTodo);
@@ -23,8 +23,12 @@ function ListTodo(props) {
           title={item.title}
           subtitle={item.priority}
           subtitleStyle={{color : (item.priority === 'Low') ? 'green' : 'red'}}
-          left={(props) => <Avatar.Icon {...props} icon="check-bold" />}
-          right={(props) => <IconButton {...props} color='red' icon="delete" onPress={() => {}} />}
+          left={(p) => <Avatar.Icon {...p} icon="check-bold" />}
+          right={(p) => <IconButton {...p} color='red' icon="delete" onPress={
+            () => {
+              props.setList(props.listTodo.filter(it => it.id !== item.id));
+            }
+          } />}
           />
         }/>
       </ScrollView>

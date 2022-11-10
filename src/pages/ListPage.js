@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ScrollView, FlatList } from 'react-native';
-import { Card, Avatar, IconButton } from 'react-native-paper';
+import { Card, Avatar, ActivityIndicator } from 'react-native-paper';
 
 export default function ListPage() {
     
@@ -34,7 +34,10 @@ export default function ListPage() {
     else
     {
         return(
+            <>
             <div>Loading...</div>
+            <ActivityIndicator animating={true}/>
+            </>
         );
     }
 }
