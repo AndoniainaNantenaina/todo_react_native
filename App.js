@@ -1,11 +1,11 @@
 import { Component } from 'react';
-import HomePage from './src/pages/HomePage';
+import MainPage from './src/pages/MainPage';
 
 class App extends Component {
 
   render(){
     return (
-      <HomePage/>
+      <MainPage/>
     );
   }
   

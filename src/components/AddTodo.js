@@ -1,49 +1,67 @@
 import React, { useState } from 'react';
-import { Button, Divider, TextInput } from "react-native-paper";
+import { Button, Divider, TextInput, RadioButton } from "react-native-paper";
 
 function AddTodo(props) {
 
     const [todo, setTodo] = useState(
         {
-            "title" : "",
-            "priority" : ""
+            title : "",
+            priority : "Low"
         }
     );
 
-    const [title, setTitle] = useState('');
-    const [priority, setPriority] = useState('');
+    // Hooks de priority
+    const [isLowChecked, setIsLowChecked] = useState(true);
+    const [isHighChecked, setIsHighChecked] = useState(false);
 
     return (
         <>
+        <div style={{padding : 20}}>
         <TextInput 
         onChange={text => {
-            setTitle(text.target.value);
+            setTodo({title : text.target.value, priority : todo.priority})
         }}
-        value={title}
+        value={todo.title}
         mode='outlined' 
         label="Title"/>
 
-        <TextInput
-        onChange={text => {
-            setPriority(text.target.value);
-        }}
-        value={priority}
-        mode='outlined'
-        label='Priority'/>
+        <RadioButton
+        value={todo.priority}
+        color="green"
+        status={isLowChecked === true ? 'checked' : 'unchecked'}
+        onPress={() => {
+            setIsLowChecked(true);
+            setIsHighChecked(false);
+            setTodo({title : todo.title, priority : 'Low'})
+        }}/>
+
+        <RadioButton
+        value={todo.priority}
+        color="red"
+        status={isHighChecked === true ? 'checked' : 'unchecked'}
+        onPress={() => {
+            setIsHighChecked(true);
+            setIsLowChecked(false)
+            setTodo({title : todo.title, priority : 'High'})
+        }}/>
 
         <Divider/>
 
         <Button
-        onPress={
-            () => {
-                setTodo({title : title, priority : priority});
-                props.addTodo(todo.title, todo.priority);
+        onPress={() => {
+            if (todo.title != "") {
+                props.setList([...props.list, todo]);
+                setTodo({title : "", priority : 'Low'});
+                setIsLowChecked(true);
+                setIsHighChecked(false);
             }
-        }
+        }}
         mode="contained"
-        icon="check">
+        icon="check" 
+        compact={true}>
             Add Todo
         </Button>
+        </div>
         </>
     );
 }
