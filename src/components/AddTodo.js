@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Divider, TextInput, RadioButton } from "react-native-paper";
+import { Button, Divider, TextInput, RadioButton, Text } from "react-native-paper";
+import { View } from 'react-native';
 
 function AddTodo(props) {
 
@@ -26,25 +27,16 @@ function AddTodo(props) {
         mode='outlined' 
         label="Title"/>
 
-        <RadioButton
-        value={todo.priority}
-        color="green"
-        status={isLowChecked === true ? 'checked' : 'unchecked'}
-        onPress={() => {
-            setIsLowChecked(true);
-            setIsHighChecked(false);
-            setTodo({id : todo.id, title : todo.title, priority : 'Low'})
-        }}/>
-
-        <RadioButton
-        value={todo.priority}
-        color="red"
-        status={isHighChecked === true ? 'checked' : 'unchecked'}
-        onPress={() => {
-            setIsHighChecked(true);
-            setIsLowChecked(false)
-            setTodo({id : todo.id, title : todo.title, priority : 'High'})
-        }}/>
+        <RadioButton.Group onValueChange={newValue => setTodo({id : todo.id, title : todo.title, priority : newValue})} value={todo.priority}>
+            <View>
+                <Text>Low</Text>
+                <RadioButton color='green' value="Low" />
+            </View>
+            <View>
+                <Text>High</Text>
+                <RadioButton color='red' value="High" />
+            </View>
+        </RadioButton.Group>
 
         <Divider/>
 

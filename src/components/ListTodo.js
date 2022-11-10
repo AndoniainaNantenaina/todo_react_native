@@ -19,17 +19,25 @@ function ListTodo(props) {
         <FlatList
         data={props.listTodo}
         renderItem={
-          ({item}) => <Card.Title
-          title={item.title}
-          subtitle={item.priority}
-          subtitleStyle={{color : (item.priority === 'Low') ? 'green' : 'red'}}
-          left={(p) => <Avatar.Icon {...p} icon="check-bold" />}
-          right={(p) => <IconButton {...p} color='red' icon="delete" onPress={
-            () => {
-              props.setList(props.listTodo.filter(it => it.id !== item.id));
-            }
-          } />}
-          />
+          ({item}) => {
+            return(
+              <>
+              <Card elevation={50}>
+                <Card.Title
+                title={item.title}
+                subtitle={item.priority}
+                subtitleStyle={{color : (item.priority === 'Low') ? 'green' : 'red'}}
+                left={(p) => <Avatar.Icon {...p} icon="check-bold" />}
+                right={(p) => <IconButton {...p} color='red' icon="delete" onPress={
+                  () => {
+                    props.setList(props.listTodo.filter(it => it.id !== item.id));
+                  }
+                } />}
+                />
+              </Card>
+              </>
+            );
+          }
         }/>
       </ScrollView>
       </>
