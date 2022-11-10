@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import MyAppBar from '../components/AppBar'
 import { ScrollView, FlatList } from 'react-native';
 import { Card, Avatar, IconButton } from 'react-native-paper';
 
@@ -16,7 +15,6 @@ export default function ListPage() {
     {
         return (
             <>
-            {/* <MyAppBar title="Comments"/> */}
             <h3>It have <b>{list.length}</b> comments !</h3>
             <ScrollView bounces={true}>
                 <FlatList
@@ -35,5 +33,8 @@ export default function ListPage() {
     }
     else
     {
+        return(
+            <div>Loading...</div>
+        );
     }
 }

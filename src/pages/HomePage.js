@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import AddTodo from '../components/AddTodo'
-import MyAppBar from '../components/AppBar'
 import ListTodo from '../components/ListTodo';
 
 export default function HomePage() {
@@ -10,7 +9,6 @@ export default function HomePage() {
 
     return (
         <>
-        {/* <MyAppBar title="Todo"/> */}
         <AddTodo list={list} setList={setList}/>
         <ListTodo listTodo={list}/>
         </>

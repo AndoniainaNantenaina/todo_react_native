@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BottomNavigation } from 'react-native-paper';
 import MyAppBar from '../components/AppBar';
+import AboutPage from './AboutPage';
 import HomePage from './HomePage';
 import ListPage from './ListPage';
 
@@ -16,6 +17,12 @@ const ListPageRoute = () => {
   );
 };
 
+const AboutPageRoute = () => {
+  return(
+    <AboutPage/>
+  );
+}
+
 export default function MainPage() {
 
   // Index en format hooks
@@ -24,13 +31,15 @@ export default function MainPage() {
   // Les routes des pages
   const [routes] = useState([
     {key : 'home', title : 'Home', icon : 'home'},
-    {key : 'comments', title : 'Comments', icon : 'format-list-bulleted'}
+    {key : 'comments', title : 'Comments', icon : 'format-list-bulleted'},
+    {key : 'about', title : 'About', icon : 'information'}
   ]);
 
   // Scene de rendu
   const renderScene = BottomNavigation.SceneMap({
     home : HomePageRoute,
-    comments : ListPageRoute
+    comments : ListPageRoute,
+    about : AboutPageRoute
   })
 
   return (
