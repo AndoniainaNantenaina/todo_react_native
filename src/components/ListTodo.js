@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FlatList, ScrollView } from 'react-native';
-import { Card, Avatar, IconButton } from 'react-native-paper';
+import { Card, Avatar, IconButton, Button, TextInput, Text, Divider } from 'react-native-paper';
 
 function ListTodo(props) {
-
+  
   if (props.listTodo.length != 0) {
 
     console.log(props.listTodo);
@@ -12,7 +12,11 @@ function ListTodo(props) {
       <>
       <div>
         <center>
+          <Divider/>
+          <Text>
           You have <b>{props.listTodo.length}</b> tasks !
+          </Text>
+          <Divider/>
         </center>
       </div>
       <ScrollView bounces={true}>
@@ -22,7 +26,8 @@ function ListTodo(props) {
           ({item}) => {
             return(
               <>
-              <Card elevation={50}>
+              <div style={{padding : 8}}>
+              <Card elevation={10}>
                 <Card.Title
                 title={item.title}
                 subtitle={item.priority}
@@ -34,7 +39,13 @@ function ListTodo(props) {
                   }
                 } />}
                 />
+                <Card.Actions>
+                  <Button icon='pencil' mode='outlined' color='blue' onPress={() => {
+                    console.log(item);
+                  }}>Edit</Button>
+                </Card.Actions>
               </Card>
+              </div>
               </>
             );
           }
@@ -42,6 +53,7 @@ function ListTodo(props) {
       </ScrollView>
       </>
     );
+    
   }
 
   else {

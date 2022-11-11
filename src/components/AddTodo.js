@@ -12,10 +12,6 @@ function AddTodo(props) {
         }
     );
 
-    // Hooks de priority
-    const [isLowChecked, setIsLowChecked] = useState(true);
-    const [isHighChecked, setIsHighChecked] = useState(false);
-
     return (
         <>
         <div style={{padding : 20}}>
@@ -30,11 +26,11 @@ function AddTodo(props) {
         <RadioButton.Group onValueChange={newValue => setTodo({id : todo.id, title : todo.title, priority : newValue})} value={todo.priority}>
             <View>
                 <Text>Low</Text>
-                <RadioButton color='green' value="Low" />
+                <RadioButton status={ todo.priority === 'Low' ? "checked" : "unchecked" } color='green' value="Low" />
             </View>
             <View>
                 <Text>High</Text>
-                <RadioButton color='red' value="High" />
+                <RadioButton status={ todo.priority === 'High' ? "checked" : "unchecked" } color='red' value="High" />
             </View>
         </RadioButton.Group>
 
@@ -45,8 +41,6 @@ function AddTodo(props) {
             if (todo.title != "") {
                 props.setList([...props.list, todo]);
                 setTodo({id : todo.id + 1, title : "", priority : 'Low'});
-                setIsLowChecked(true);
-                setIsHighChecked(false);
             }
         }}
         mode="contained"
