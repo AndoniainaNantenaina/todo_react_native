@@ -12,11 +12,15 @@ export default function HomePage() {
     // Query de la barre de recherche
     const [query, setQuery] = useState('');
 
+    function updateList(item) {
+        console.log(item.id);
+    }
+
     return (
         <>
         <Searchbar value={query} onChange={value => setQuery(value.target.value)} placeholder='Search To-Do'/>
         <AddTodo list={list} setList={setList}/>
-        <ListTodo filter={query} setList={setList} listTodo={list}/>
+        <ListTodo updateTodo={updateList} filter={query} setList={setList} listTodo={list}/>
         </>
     )
 }
