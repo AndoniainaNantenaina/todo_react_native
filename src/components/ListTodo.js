@@ -71,7 +71,7 @@ function ListTodo(props) {
                   } />}
                   />
                   <Card.Actions>
-                    <Button icon='pencil' mode='outlined' color='blue' onPress={() => {
+                    <Button icon={(itemToEdit.id === item.id) ? 'update' : 'pencil'} mode='outlined' color='blue' onPress={() => {
                       if (itemToEdit.id === item.id) 
                       {
                         handleUpdate();
@@ -81,7 +81,7 @@ function ListTodo(props) {
                       {
                         editTodo(item);
                       }
-                    }}>Edit</Button>
+                    }}>{(itemToEdit.id === item.id) ? "Update" : "Edit"}</Button>
                   </Card.Actions>
                 </Card>
                 {(itemToEdit.id === item.id) ? (<TextInput onChange={val => updateTodo(val.target.value)} value={itemToEdit.title}/>) : ''}
